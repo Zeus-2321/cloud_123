@@ -7,6 +7,7 @@ pydub>=0.25.1
 Pillow>=10.0.0
 torch>=2.0.0
 transformers>=4.36.0
+accelerate>=0.20.3
 gunicorn>=20.0.0
 blip
 ffmpeg

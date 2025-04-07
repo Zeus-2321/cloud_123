@@ -55,6 +55,10 @@ def generate_caption(image_pil):
 
 # --- Routes ---
 
+@app.route("/")
+def home():
+    return "Server is running"
+
 @app.route("/image-captioning", methods=["POST"])
 def image_captioning():
     if not captioning_model_loaded:
