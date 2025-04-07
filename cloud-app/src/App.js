@@ -316,18 +316,52 @@ export default function App() {
         {/* Image Captioning Section */}
         <div className="service-section" id="image-services">
             <h2>Image Captioning</h2>
-              <div className="image-service-block">
-                  <label htmlFor="caption-upload" className="file-input-label"> Choose Image for Captioning </label>
-                  <input id="caption-upload" type="file" accept="image/*" onChange={handleCaptionFileChange} />
-                  {captionFileName && <p className="file-name">Selected: {captionFileName}</p>}
-                  <button
-                      onClick={() => handleRequest("image-captioning", captionFile, setCaption, setError, "caption", true )}
-                      disabled={!captionFile || loading.caption} >
-                      {loading.caption ? "Generating..." : "Generate Image Caption"}
-                  </button>
-                  {renderResult(caption, 'caption', 'Image Caption: No caption generated', error.caption, loading.caption)}
-              </div>
-        </div> {/* End Image Captioning Section */}
+            <div className="image-service-block">
+                <label htmlFor="caption-upload" className="file-input-label">
+                    Choose Image for Captioning
+                </label>
+                <input
+                id="caption-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleCaptionFileChange}
+                />
+                {captionFileName && (
+                <>
+                <p className="file-name">Selected: {captionFileName}</p>
+                <img
+                    src={URL.createObjectURL(captionFile)}
+                    alt="Selected for captioning"
+                    className="preview-image"
+                    style={{ maxWidth: "100%", maxHeight: "300px", marginTop: "10px", borderRadius: "8px" }}
+                />
+            </>
+        )}
+        <button
+            onClick={() =>
+                handleRequest(
+                    "image-captioning",
+                    captionFile,
+                    setCaption,
+                    setError,
+                    "caption",
+                    true
+                )
+            }
+            disabled={!captionFile || loading.caption}
+        >
+            {loading.caption ? "Generating..." : "Generate Image Caption"}
+        </button>
+        {renderResult(
+            caption,
+            "caption",
+            "Image Caption: No caption generated",
+            error.caption,
+            loading.caption
+        )}
+    </div>
+</div>
+
 
       </div> {/* End .main-content-area */}
     </div> // End .App div
